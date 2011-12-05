@@ -1,0 +1,6 @@
+{
+    "name": "trollop",
+    "description": "A node.js (maybe common.js?) version of the Trollop ruby command line option parser",
+    "version": "0.1.2",
+    "main" : "index.js"
+}
