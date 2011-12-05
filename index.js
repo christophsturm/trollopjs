@@ -3,7 +3,7 @@
 // Copyright:: Copyright 2007 William Morgan
 // License::   GNU GPL version 2
 
-var sys = require('sys');
+var util = require('util');
 var underscore = require('./dependencies/underscore')['_'];
 
 const VERSION = "1.15";
@@ -601,9 +601,9 @@ Parser.prototype.educate = function(_stream) {
 
   if( !(this.order.length > 0 && this.order[0][0] == 'text') ) {
     if(this._version) {
-      sys.puts(this._version+"\n");
+      util.puts(this._version+"\n");
     }
-    sys.puts("Options:");
+    util.puts("Options:");
   }
 
   this.order.forEach(function(ordering) {
@@ -611,12 +611,12 @@ Parser.prototype.educate = function(_stream) {
     var opt = ordering[1];
 
     if(what == 'text') {
-      sys.puts(this.wrap(opt)+"\n");
+      util.puts(this.wrap(opt)+"\n");
       return;
     }
 
     var spec = this.specs[opt];
-    sys.print("  " + left[opt]); //TODO: justify this text
+    util.print("  " + left[opt]); //TODO: justify this text
     var desc = spec.desc;
 
     if( !(typeof spec.dflt == 'undefined') && spec.dflt.constructor == Array) {
@@ -635,7 +635,7 @@ Parser.prototype.educate = function(_stream) {
         }
     }
 
-    sys.puts(this.wrap(desc, {width: this.width() - rightcol_start - 1, prefix: rightcol_start}));
+    util.puts(this.wrap(desc, {width: this.width() - rightcol_start - 1, prefix: rightcol_start}));
   },this);
 }
 
@@ -877,12 +877,12 @@ exports.options = function() {
       process.exit(0);
     }
     else if( err == VersionNeeded ) {
-      sys.puts(this.p._version);
+      util.puts(this.p._version);
       process.exit(0);
     }
     else {
-      if (err.message) sys.puts(err.message);
-      if (err.stack) sys.puts(err.stack);
+      if (err.message) util.puts(err.message);
+      if (err.stack) util.puts(err.stack);
     }
     /*
     CommandlineError => e
